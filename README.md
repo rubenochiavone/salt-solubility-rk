@@ -13,9 +13,8 @@ Curve fitting of ternary Redlich-Kister equation.
 In order to install it type:
 
 ```
-$ sudo apt-get install python-numpy python-scipy python-matplotlib ipython \
-        ipython-notebook python-pandas python-sympy python-nose python-pip
-$ sudo pip install lmfit
+$ sudo apt install python-pip
+$ pip install numpy lmfit
 ```
 
 ## Exec
@@ -40,4 +39,3 @@ To test one of them do the following:
 All output written to `stdout` will be write to `config/water_meg.out` file simultaneously.
 
 Enjoy!
-
