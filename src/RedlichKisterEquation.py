@@ -41,11 +41,11 @@ class RedlichKisterEquation:
             i += 1
         
         if verbose:
-            print RedlichKisterEquation.calculateTag, "result =",fp
+            print RedlichKisterEquation.calculateTag, "result =", fp
             
             elapsed_time = time.time() - start_time
             
-            print RedlichKisterEquation.calculateTag, "it took",elapsed_time,"s"
+            print RedlichKisterEquation.calculateTag, "it took", elapsed_time, "s"
             print RedlichKisterEquation.calculateTag
             print RedlichKisterEquation.calculateTag, "end"
             print RedlichKisterEquation.calculateTag

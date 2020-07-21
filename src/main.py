@@ -12,7 +12,7 @@ if len(sys.argv) > 1:
     # override default file
     configFileName = sys.argv[1]
 else:
-    print "Error! An input file must be specified. Call it './excess-salt-solubility-rk-fit <path_to_config_file>'."
+    print "Error! An input file must be specified. Call it './rk-fit <path_to_config_file>'."
     sys.exit()
 
 # unbuffer output
@@ -47,7 +47,7 @@ config = Config(configJson)
 # retrieve params from config
 params = config.getParams()
 data = config.getData()
-soly = config.getRho()
+soly = config.getSoly()
 
 OutputFormatter.printExperimentaldata(data, soly)
 

@@ -12,9 +12,8 @@ class Config:
         
         params = Parameters()
         
-        params['d1'] = Parameter('d1', value=config['compounds'][0]['density'], vary=False)
-        params['d2'] = Parameter('d2', value=config['compounds'][1]['density'], vary=False)
-        params['d3'] = Parameter('d3', value=config['compounds'][2]['density'], vary=False)
+        params['s1'] = Parameter('s1', value=config['compounds'][0]['solubility'], vary=False)
+        params['s2'] = Parameter('s2', value=config['compounds'][1]['solubility'], vary=False)
 
         rkp12Conf = config['binary']['rkp']['x1-x2']
         
@@ -57,5 +56,5 @@ class Config:
     def getData(self):
         return self.data
     
-    def getRho(self):
+    def getSoly(self):
         return self.soly

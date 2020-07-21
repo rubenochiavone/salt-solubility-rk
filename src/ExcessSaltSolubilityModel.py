@@ -1,5 +1,6 @@
 import math
 from RedlichKisterEquation import RedlichKisterEquation
+from RedlichKisterTemperatureContribution import RedlichKisterTemperatureContribution
 
 class ExcessSaltSolubilityModel:
 
@@ -15,37 +16,39 @@ class ExcessSaltSolubilityModel:
         if verbose:
             print ExcessSaltSolubilityModel.modelTag, "z1", z1
             print ExcessSaltSolubilityModel.modelTag, "z2", z2
+            print ExcessSaltSolubilityModel.modelTag, "T", T
         
-        s1 = params['d1'].value # compound #1 density
-        s2 = params['d2'].value # compound #2 density
+        s1 = params['s1'].value # compound #1 solubility
+        s2 = params['s2'].value # compound #2 solubility
         
         rkp12 = []
         rkp12.append(params['rkp12_1'].value) # #1 redlich-kister parameter for 1-2 compound composition
         rkp12.append(params['rkp12_2'].value) # #2 redlich-kister parameter for 1-2 compound composition
         rkp12.append(params['rkp12_3'].value) # #3 redlich-kister parameter for 1-2 compound composition
         
-        vid1 = z1 * math.log(s1)
-        vid2 = z2 * math.log(s2)
+        solyid1 = z1 * math.log(s1)
+        solyid2 = z2 * math.log(s2)
         
-        vid = vid1 + vid2
+        solyid = solyid1 + solyid2
 
-        vs12 = []
-        vexcess = []
+        soly12 = []
+        solyexcess = []
         
         for i in range(len(data)):
-            vs12.append(z1[i] * z2[i] * RedlichKisterEquation.calculate(rkp12, z1[i], z2[i]))
+            soly12.append(z1[i] * z2[i] * RedlichKisterEquation.calculate(\
+                RedlichKisterTemperatureContribution.quadratic(rkp12, T[i]), z1[i], z2[i]))
             
-            vexcess.append(vs12[i])
+            solyexcess.append(soly12[i])
         
         if verbose:
-            print ExcessSaltSolubilityModel.modelTag, "ideal volume", vid
-            print ExcessSaltSolubilityModel.modelTag, "12 contribution", vs12
-            print ExcessSaltSolubilityModel.modelTag, "excess volume", vexcess
+            print ExcessSaltSolubilityModel.modelTag, "ideal solubility", solyid
+            print ExcessSaltSolubilityModel.modelTag, "12 contribution", soly12
+            print ExcessSaltSolubilityModel.modelTag, "excess solubility", solyexcess
         
         soly = []
 
         for i in range(len(data)):
-            v = math.exp(math.log(vid[i]) + vexcess[i])
+            v = math.exp(math.log(solyid[i]) + solyexcess[i])
             soly.append(v)
         
         if verbose:

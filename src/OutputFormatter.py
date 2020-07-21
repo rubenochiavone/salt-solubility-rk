@@ -8,29 +8,25 @@ class OutputFormatter:
         print ""
         print "  @@@@@@@@@@@@@@@@@@@@@@@@@@"
         print "  @@@                    @@@"
-        print "  @@@   excess-salt-solubility-rk-fit   @@@"
+        print "  @@@       rk-fit       @@@"
         print "  @@@                    @@@"
         print "  @@@@@@@@@@@@@@@@@@@@@@@@@@"
         print ""
-        print "Performs curve fitting of ternary Redlich-Kister equation"
+        print "Performs curve fitting of binary Redlich-Kister equation"
         print "Authors: Osvaldo Chiavone Filho (osvaldo@nupeg.ufrn.br) and Ruben O. Chiavone"
-        print "UFRN - 2016"
+        print "UFRN"
         print ""
 
     @staticmethod
     def printConfig(config):
         
-        #TODO: 
-        
         print "[[Configurations]]"
         
         print "    x1 =", config['compounds'][0]['name']
         print "    x2 =", config['compounds'][1]['name']
-        print "    x3 =", config['compounds'][2]['name']
         print ""
-        print "    x1.density =", config['compounds'][0]['density']
-        print "    x2.density =", config['compounds'][1]['density']
-        print "    x3.density =", config['compounds'][2]['density']
+        print "    x1.solubility =", config['compounds'][0]['solubility']
+        print "    x2.solubility =", config['compounds'][1]['solubility']
         
     
     @staticmethod
@@ -42,7 +38,7 @@ class OutputFormatter:
         print "[[Experimental Data]]"
         
         print "      z1", "      ", "z2", "       ", \
-                "T", "     ", " soly"
+                "T", "     ", "soly"
         
         for i in range(len(data)):
             print "    {0:1.5f}   {1:1.5f}   {2:3.2f}   {3:1.5f}" \
@@ -58,7 +54,7 @@ class OutputFormatter:
 
         print "[[Results]]"
         print "      z1", "      ", "z2", "       ", \
-                "T", "     ", " soly", "  ", "soly_clc", "    ", "err"
+                "T", "     ", "soly", "  ", "soly_clc", "    ", "err"
 
         errsum = 0
 
